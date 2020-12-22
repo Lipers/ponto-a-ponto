@@ -74,6 +74,7 @@ spring:
   jpa:
     open-in-view: false
     properties:
+      spring.jpa.hibernate.ddl-auto: update
       hibernate.jdbc.time_zone: UTC
       hibernate.id.new_generator_mappings: true
       hibernate.connection.provider_disables_autocommit: true
