@@ -11,24 +11,24 @@ public class RegistroPonto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name="id")
-//    private User usuario;
+    @ManyToOne
+    @JoinTable(name= "id")
+    private User usuario;
 
     @Column
-    private String momentoRegistrado;
+    private Instant momentoRegistrado;
 
-    public RegistroPonto(String momentoRegistrado) {
-//        this.usuario = joao;
+    public RegistroPonto(User joao, Instant momentoRegistrado) {
+        this.usuario = joao;
         this.momentoRegistrado = momentoRegistrado;
     }
 
 
-//    public User getUsuario() {
-//        return this.usuario;
-//    }
+    public User getUsuario() {
+        return this.usuario;
+    }
 
-//    public Instant getInstante() {
-//        return this.momentoRegistrado;
-//    }
+    public Instant getInstante() {
+        return this.momentoRegistrado;
+    }
 }

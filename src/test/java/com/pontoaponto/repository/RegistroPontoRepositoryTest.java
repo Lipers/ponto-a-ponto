@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 public class RegistroPontoRepositoryTest {
@@ -15,21 +17,21 @@ public class RegistroPontoRepositoryTest {
     @Autowired
     RegistroPontoRepository registroPontoRepository;
 
+    @Autowired
+    UserRepository userRepository;
 
     @Test
     void quandoRegistrarPontoDeveriaRegistrarPonto() {
 
-        User joao = new User();
-        joao.setFirstName("João");
+        Optional<User> adm = userRepository.findById(3L);
+        Instant instante = Instant.now();
 
-//        Instant instante = Instant.now();
-
-        RegistroPonto registroPonto = new RegistroPonto("asd");
+        RegistroPonto registroPonto = new RegistroPonto(adm.get(), instante);
 
         RegistroPonto pontoSalvado = registroPontoRepository.save(registroPonto);
 
-//        Assertions.assertEquals("João", pontoSalvado.getUsuario().getFirstName());
-//        Assertions.assertEquals("2020-12-22T17:52:36.526762Z", pontoSalvado.getInstante());
+        Assertions.assertEquals("Administrator", pontoSalvado.getUsuario().getFirstName());
+        Assertions.assertEquals(registroPonto.getInstante(), pontoSalvado.getInstante());
 
     }
 }
