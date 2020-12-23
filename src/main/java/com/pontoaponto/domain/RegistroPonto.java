@@ -12,15 +12,19 @@ public class RegistroPonto {
     private Long id;
 
     @ManyToOne
-    @JoinTable(name= "id")
+    @JoinTable(name = "id")
     private User usuario;
 
     @Column
     private Instant momentoRegistrado;
 
-    public RegistroPonto(User joao, Instant momentoRegistrado) {
-        this.usuario = joao;
+    public RegistroPonto(User usuario, Instant momentoRegistrado) {
+        this.usuario = usuario;
         this.momentoRegistrado = momentoRegistrado;
+    }
+
+    public RegistroPonto() {
+
     }
 
 
