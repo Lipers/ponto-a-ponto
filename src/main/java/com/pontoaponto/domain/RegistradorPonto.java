@@ -1,32 +1,37 @@
 package com.pontoaponto.domain;
 
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table
-public class RegistroPonto {
+public class RegistradorPonto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
-    @JoinTable(name = "id")
     private User usuario;
 
-    @Column
+    @Column(columnDefinition="TIMESTAMP")
+    @UpdateTimestamp
     private Instant momentoRegistrado;
 
-    public RegistroPonto(User usuario, Instant momentoRegistrado) {
+    public RegistradorPonto(User usuario, Instant momentoRegistrado) {
         this.usuario = usuario;
         this.momentoRegistrado = momentoRegistrado;
     }
 
-    public RegistroPonto() {
+    public RegistradorPonto() {
 
     }
-
 
     public User getUsuario() {
         return this.usuario;
