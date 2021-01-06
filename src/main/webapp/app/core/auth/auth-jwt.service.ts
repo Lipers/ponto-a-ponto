@@ -20,9 +20,14 @@ export class AuthServerProvider {
   }
 
   login(credentials: Login): Observable<void> {
-    return this.http
-      .post<JwtToken>(SERVER_API_URL + 'api/authenticate', credentials)
-      .pipe(map(response => this.authenticateSuccess(response, credentials.rememberMe)));
+    return this.http.post<JwtToken>(SERVER_API_URL + 'api/authenticate', credentials).pipe(
+      map(response => this.authenticateSuccess(response, credentials.rememberMe)),
+      map(() => {
+        this.http.get(SERVER_API_URL + 'api/users/' + credentials.username).subscribe((data: any) => {
+          this.$localStorage.store('id', data.id);
+        });
+      })
+    );
   }
 
   logout(): Observable<void> {

@@ -4,19 +4,19 @@ import com.pontoaponto.domain.RegistradorPonto;
 import com.pontoaponto.service.RegistradorPontoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class RegistradorPontoController {
 
-    @Autowired
-    private RegistradorPontoService registradorPontoService;
+    private final RegistradorPontoService registradorPontoService;
+
+    public RegistradorPontoController(RegistradorPontoService registradorPontoService) {
+        this.registradorPontoService = registradorPontoService;
+    }
 
     @GetMapping(value = "/pontos")
     public ResponseEntity<List<RegistradorPonto>> getAll() {

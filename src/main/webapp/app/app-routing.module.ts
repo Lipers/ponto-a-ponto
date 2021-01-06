@@ -25,6 +25,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           path: 'account',
           loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
         },
+        {
+          path: 'registros',
+          loadChildren: () => import('./entities/registrador-ponto-module/registrador-ponto-m.module').then(m => m.RegistradorPontoMModule),
+        },
         ...LAYOUT_ROUTES,
       ],
       { enableTracing: DEBUG_INFO_ENABLED }

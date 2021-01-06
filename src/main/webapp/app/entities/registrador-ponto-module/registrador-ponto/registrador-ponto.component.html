@@ -1,0 +1,18 @@
+<div class="container search-table">
+  <div class="search-list">
+    <table class="table" id="myTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Data do registro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of results$ | async">
+          <td>{{ result.usuario.firstName }}</td>
+          <td>{{ result.instante }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

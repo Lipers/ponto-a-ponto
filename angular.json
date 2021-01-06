@@ -31,6 +31,7 @@
   },
   "defaultProject": "ponto-a-ponto",
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "86da62c4-5a95-400f-8111-978d5bf529f6"
   }
 }
